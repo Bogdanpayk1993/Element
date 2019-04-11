@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Робота з елементами </title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        button {
+            margin: 5px;
+            width: 100px;
+        }
+
+        input {
+            width: 80px;
+        }
+
+        td {
+            width: 50px;
+        }
+    </style>
+    <script>
+        function getSum() {
+            var inputElements = document.querySelectorAll("input[type='text']");
+            var number1 = parseFloat(inputElements[0].value);
+            var number2 = parseFloat(inputElements[1].value);
+            var s = number1 + number2;
+            inputElements[2].value = s;
+        }
+
+        function Old() {
+            const year = parseInt(document.getElementById("year").value)
+            const old = 2019 - year
+            document.getElementById("old").value = old
+        }
+
+        function Money() {
+            const amount = parseFloat(document.getElementById("amount").value)
+            const course = parseFloat(document.getElementById("course").value)
+            const result = amount / course
+            document.getElementById("result").value = result
+        }
+
+        function Calculation() {
+            const a = parseFloat(document.getElementById("a").value)
+            const b = parseFloat(document.getElementById("b").value)
+            const op = document.getElementById("operation").value
+            var result = 0
+            switch(op)
+            {
+                case "+":
+                    result = a + b
+                break
+
+                case "-":
+                    result = a - b
+                break
+
+                case "*":
+                    result = a * b
+                break
+
+                case "/":
+                    result = a / b
+                break
+            }
+            document.getElementById("c").value = result
+        }
+
+        window.onload = function () {
+            document.getElementById("0").onclick = getSum
+            document.getElementById("1").onclick = Old
+            document.getElementById("2").onclick = Money
+            document.getElementById("3").onclick = Calculation
+        }
+
+        function getSumOfGroup(checkboxArr) {
+            Sum = 0;
+            for (var i = 0; i < checkboxArr.length; i++) {
+                if (checkboxArr[i].checked)
+                {
+                   Sum += +checkboxArr[i].value;
+                }
+            }
+            return Sum;
+        }
+        function getTotalSum() {
+            var firstDishesGroup = document.querySelectorAll("[name='firstdish']");
+            var totalPrice1 = getSumOfGroup(firstDishesGroup);
+            var secondDishesGroup = document.querySelectorAll("[name='seconddish']");
+            var totalPrice2 = getSumOfGroup(secondDishesGroup);
+            var liquidsGroup = document.querySelectorAll("[name='liquid']");
+            var totalPrice3 = getSumOfGroup(liquidsGroup);
+            var total = totalPrice1 + totalPrice2 + totalPrice3;
+            document.getElementById("summ1").value = total;
+        }
+    
+    </script>
+</head>
+
+<body>
+    <h1> Робота з елементами </h1>
+    <hr>
+
+    <h3> Завдання 0 </h3>
+    <label for="firstNumber">а = </label>
+    <input type="text" id="firstNumber" value="0">
+    
+    <label for="secondNumber"> + b = </label>
+    <input type="text" id="secondNumber"  value="0">
+    
+    <input type="button" id="0" value="=">
+
+    <label for="summ">c = </label>
+    <input type="text" id="summ">
+    <hr>
+
+    <h3> Завдання 1 </h3>
+    <label>
+        Рік народження -
+        <input type="number" id="year">
+    </label>
+    <button id="1">
+        Розрахунок
+    </button> 
+    <label>
+        Вік -
+        <input type="number" id="old">
+    </label>
+    <hr>
+
+    <h3> Завдання 2 </h3>
+    <label>
+        Сума грошей -
+        <input type="number" id="amount"> 
+    </label>
+    <label>
+        Курс валюти - 
+        <input type="number" id="course">
+    </label>
+    <button id="2">
+        Розрахунок
+    </button>
+    <label>
+        Конвертована сума -
+        <input type="number" id="result">
+    </label>
+    <hr>
+
+    <h3> Завдання 3 </h3>
+    <label>
+        a =
+        <input type="number" id="a">
+    </label>
+    Операція - 
+    <input type="text" id="operation" list="op">
+    <datalist id="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </datalist>
+    <label>
+        b =
+        <input type="number" id="b">
+    </label>
+    <button id="3">
+        =
+    </button>
+    <label>
+        c =
+        <input type="number" id="c">
+    </label>
+    <hr>
+
+    <h3> Завдання 4 </h3>
+    <table>
+        <tr>
+            <td>
+                Sup:
+            </td>
+            <td> 
+                <input name="firstdish" type="checkbox" id="Sup" value="20" /> 
+            </td>
+            <td>
+                Borsch:
+            </td>
+            <td> 
+                <input name="firstdish" type="checkbox" id="Borsch" value="25" /> <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rus:
+            </td>
+            <td> 
+                <input name="seconddish" type="checkbox" id="Rus" value="15" /> 
+            </td>
+            <td>
+                Potato: 
+            </td>
+            <td>
+                <input name="seconddish" type="checkbox" id="Potato" value="23" /> <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tea:
+            </td>
+            <td> 
+                <input name="liquid" type="checkbox" id="Tea" value="10" /> 
+            </td>
+            <td>
+                Kompot:
+            </td>
+            <td> 
+                <input name="liquid" type="checkbox" id="kompot" value="8" /> <br>
+            </td>
+        </tr>
+    </table>
+    <input type="button" name="name" value="Find sum" onclick="getTotalSum()" />
+
+    <label for="summ">Sum : </label>
+    <input type="text" id="summ1" value="" /><br>
+    <hr>
+
+</body>
+</html>
